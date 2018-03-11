@@ -11,19 +11,19 @@ transform = new_matrix()
 
 
 add_circle(transform, 300, 300, 0, 100, .0001)
-draw_lines(transform, screen, color);
-save_extension(screen, "pic.png");
-display(screen)
+#draw_lines(transform, screen, color);
+#save_extension(screen, "pic.png");
+#display(screen)
 
 
-# print_matrix( make_translate(3, 4, 5) )
-# print
-# print_matrix( make_scale(3, 4, 5) )
-# print
-# print_matrix( make_rotX(math.pi/4) )
-# print
-# print_matrix( make_rotY(math.pi/4) )
-# print
-# print_matrix( make_rotZ(math.pi/4) )
+#print_matrix( make_translate(3, 4, 5) )
+#print
+#print_matrix( make_scale(3, 4, 5) )
+#print
+#print_matrix( make_rotX(math.pi/4) )
+#print
+#print_matrix( make_rotY(math.pi/4) )
+#print
+#print_matrix( make_rotZ(math.pi/4) )
 
-#parse_file( 'script', edges, transform, screen, color )
+parse_file( 'script', edges, transform, screen, color )
