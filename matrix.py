@@ -1,27 +1,32 @@
 import math
 
 def make_bezier():
-    mat = [[]]
-    mat.append([-1, 3, -3, 1])
-    mat.append([3, -6, 3, 0])
-    mat.append([-3, 3, 0, 0])
-    mat.append([1,0,0,0])
+    mat = new_matrix(4)
+    mat[0] = [-1, 3, -3, 1]
+    mat[1] = [3, -6, 3, 0]
+    mat[2] = [-3, 3, 0, 0]
+    mat[3] = [1,0,0,0]
+    print"BEZIER MAT:"
+    print_matrix(mat)
     return mat
 
 def make_hermite():
-    mat = [[]]
-    mat.append([2, -1*3, 0,1])
-    mat.append([-2, 3, 0, 0])
-    mat.append([1, -2, 1, 0])
-    mat.append([1, -1, 0, 0])
+    mat = new_matrix(4)
+    mat[0] = [2, -1*3, 0,1]
+    mat[1] = [-2, 3, 0, 0]
+    mat[2] = [1, -2, 1, 0]
+    mat[3] = [1, -1, 0, 0]
     return mat
  
 def generate_curve_coefs( p1, p2, p3, p4, t ):
-    points = [p1, p2, p3, p4]
+    points = [[p1, p2, p3, p4]]
+    
     if (t==0):
-        matrix_mult(make_bezier(), points)
+        m1 = make_bezier()
+        matrix_mult(m1, points)
     else:
-        matrix_mult(make_hermite(), points)
+        m1 = make_hermite()
+        matrix_mult(m1, points)
     return points
 
 
@@ -86,7 +91,10 @@ def ident( matrix ):
 
 #m1 * m2 -> m2
 def matrix_mult( m1, m2 ):
-
+    print("===========M1===========")
+    print_matrix(m1)
+    print("===========M2===========") 
+    print_matrix(m2)
     point = 0
     for row in m2:
         #get a copy of the next point

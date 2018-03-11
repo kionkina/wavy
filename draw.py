@@ -18,6 +18,7 @@ def add_circle( points, cx, cy, cz, r, step ):
 def add_curve( points, x0, y0, x1, y1, x2, y2, x3, y3, step, curve_type ):
     prevX = x0
     prevY = y0
+    t = 0
     # hermite
     if curve_type == 0:
         Xs = generate_curve_coefs(x0,x1,x2,x3,0)
