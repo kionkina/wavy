@@ -6,14 +6,17 @@ def add_circle( points, cx, cy, cz, r, step ):
     # theta goes from 0 --> 2pi
     # theta is 2pi(t)
     t = 0
-    while(t < 1):
+    x0  = cx + r
+    y0 = cy
+    while(t <= 1 + step):
         theta = 2 * math.pi * t
-        x = int(r * math.cos(theta) + cx)
-        y = int(r * math.sin(theta) + cx)
-        cz = 0
-        add_point(points, x, y, z=0)
+        x = r * math.cos(theta) + cx
+        y = r * math.sin(theta) + cy
+        add_edge(points, x0, y0, cz, x, y, cz)
+        x0 = x
+        y0 = y
         t += step
-    print_matrix(points)
+#    print_matrix(points)
 
 def add_curve( points, x0, y0, x1, y1, x2, y2, x3, y3, step, curve_type ):
     prevX = x0
@@ -25,14 +28,15 @@ def add_curve( points, x0, y0, x1, y1, x2, y2, x3, y3, step, curve_type ):
         Ys = generate_curve_coefs(y0,y1,y2,y3,0)
     else:
         Xs = generate_curve_coefs(x0,x1,x2,x3,1)
-        Ys = generate_curve_coefs(y0,y1,y2,y3,0)
-    while (t<1):
+        Ys = generate_curve_coefs(y0,y1,y2,y3,1)
+    while (t<1+step):
         x = Xs[0][0]*t*t*t + Xs[0][1]*t*t + Xs[0][2]*t + Xs[0][3]
         y = Ys[0][0]*t*t*t + Ys[0][1]*t*t + Ys[0][2]*t + Ys[0][3]
         add_edge(points, prevX, prevY, 0, x, y, 0)
         prevX = x
         prevY = y
         t += step
+    
 
 
 def draw_lines( matrix, screen, color ):
